@@ -1,0 +1,7 @@
+node_modules/
+.next/
+out/
+.netlify/
+.wrangler/
+.DS_Store
+npm-debug.log*
