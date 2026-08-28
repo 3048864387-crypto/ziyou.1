@@ -319,7 +319,7 @@
 .sample-modal-back { position:absolute; z-index:3; top:20px; left:22px; display:flex; align-items:center; gap:9px; border:0; background:transparent; color:#b9c0bb; font-size:11px; cursor:pointer; transition:color .25s ease; }
 .sample-modal-back:hover { color:var(--cs-accent); }
 .sample-modal-media { min-height:500px; display:grid; place-items:center; background:#050706; }
-.sample-modal-media video { width:100%; max-height:70vh; display:block; }
+.sample-modal-media video { width:auto; max-width:100%; height:auto; max-height:70vh; display:block; background:#050706; }
 .sample-empty { max-width:480px; padding:60px 28px; display:grid; justify-items:center; gap:16px; color:white; text-align:center; }
 .sample-empty > span { width:70px; height:70px; display:grid; place-items:center; border:1px solid rgba(200,255,97,.5); border-radius:50%; color:var(--cs-accent); }
 .sample-empty strong { font-size:24px; font-weight:500; }
@@ -334,6 +334,10 @@
 .sample-gallery-head p { margin:0; color:#949c96; font-size:12px; }
 .sample-gallery-head small { position:absolute; right:32px; bottom:32px; padding:8px 11px; border:1px solid rgba(255,255,255,.14); border-radius:99px; color:#9da59f; font-size:9px; }
 .sample-gallery-grid { padding:24px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.sample-gallery-empty { min-height:260px; padding:48px 24px; display:grid; place-items:center; align-content:center; gap:13px; color:#f1f4ef; text-align:center; }
+.sample-gallery-empty > span { width:54px; height:54px; display:grid; place-items:center; border:1px solid rgba(200,255,97,.42); border-radius:50%; color:var(--cs-accent); }
+.sample-gallery-empty strong { font-size:18px; font-weight:500; }
+.sample-gallery-empty p { margin:0; color:#8f9891; font-size:11px; }
 .sample-work-card { position:relative; min-height:210px; padding:18px; overflow:hidden; border:1px solid rgba(255,255,255,.11); border-radius:4px 22px 4px 4px; background:#101311; color:white; text-align:left; cursor:pointer; isolation:isolate; transition:transform .35s ease,border-color .35s ease; }
 .sample-work-card::before,.sample-work-card::after { content:""; position:absolute; inset:0; z-index:-2; transition:transform .7s ease; }
 .sample-work-card::after { z-index:-1; background:linear-gradient(180deg,rgba(4,6,5,.04),rgba(4,6,5,.86)); }

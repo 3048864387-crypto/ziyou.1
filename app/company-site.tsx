@@ -17,13 +17,12 @@ type SampleCategory = {
   videos: SampleVideo[];
 };
 
-const createSampleSlots = (id: string, category: string): SampleVideo[] =>
-  Array.from({ length: 3 }, (_, index) => ({
-    id: `${id}-${index + 1}`,
-    title: `样片 ${String(index + 1).padStart(2, "0")}`,
-    description: category,
-    src: null,
-  }));
+const sampleVideo = (id: string, title: string, description: string, src: string): SampleVideo => ({
+  id,
+  title,
+  description,
+  src,
+});
 
 const unsplash = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1800&q=84`;
 
@@ -99,27 +98,34 @@ const expandedServices = [
 const sampleCategories: SampleCategory[] = [
   {
     id: "ip", title: "IP创意形象短剧", eyebrow: "CATEGORY 01", description: "固定人物 · 剧情反转 · 商家植入",
-    videos: createSampleSlots("ip", "IP创意形象短剧"),
+    videos: [],
   },
   {
     id: "story", title: "商家故事宣传片", eyebrow: "CATEGORY 02", description: "真实环境 · 顾客体验 · 服务故事",
-    videos: createSampleSlots("story", "商家故事宣传片"),
+    videos: [
+      sampleVideo("story-1", "样片1", "商家故事宣传片", "https://ziyou-shijie-ai.cheery-kiwi-1225.chatgpt.site/samples/story-sample-1.mp4"),
+    ],
   },
   {
     id: "cinematic", title: "电影既视感品牌片", eyebrow: "CATEGORY 03", description: "导演思维 · 电影化光影 · 高一致性",
-    videos: createSampleSlots("cinematic", "电影既视感品牌片"),
+    videos: [
+      sampleVideo("cinematic-1", "样片1", "电影既视感品牌片", "https://ziyou-shijie-ai.cheery-kiwi-1225.chatgpt.site/samples/cinematic-sample-1.mp4"),
+    ],
   },
   {
     id: "product", title: "产品宣传片", eyebrow: "CATEGORY 04", description: "产品细节 · 商业镜头 · 场景广告",
-    videos: createSampleSlots("product", "产品宣传片"),
+    videos: [
+      sampleVideo("product-1", "样片1", "产品宣传片", "https://ziyou-shijie-ai.cheery-kiwi-1225.chatgpt.site/samples/product-sample-1.mp4"),
+      sampleVideo("product-2", "样片2", "产品宣传片", "https://ziyou-shijie-ai.cheery-kiwi-1225.chatgpt.site/samples/product-sample-2.mp4"),
+    ],
   },
   {
     id: "human", title: "AI仿真人", eyebrow: "CATEGORY 05", description: "固定形象 · 人物表演 · 长期复用",
-    videos: createSampleSlots("human", "AI仿真人"),
+    videos: [],
   },
   {
     id: "comic", title: "AI漫剧", eyebrow: "CATEGORY 06", description: "连续故事 · 风格化画面 · 系列内容",
-    videos: createSampleSlots("comic", "AI漫剧"),
+    videos: []
   },
 ];
 
@@ -342,13 +348,13 @@ export default function CompanySite() {
             <p>{activeCategory.description}</p>
             <small>作品持续更新</small>
           </div>
-          <div className="sample-gallery-grid">
+          {activeCategory.videos.length > 0 ? <div className="sample-gallery-grid">
             {activeCategory.videos.map((video, index) => <button className={`sample-work-card work-tone-${(index % 6) + 1}`} key={video.id} onClick={() => setActiveVideo(video)}>
               <span className="sample-work-index">{String(index + 1).padStart(2, "0")}</span>
               <span className="sample-work-play"><PlayIcon size={18}/></span>
-              <span className="sample-work-copy"><strong>{video.title}</strong><small>{video.src ? "点击播放" : "样片待上传"}</small></span>
+              <span className="sample-work-copy"><strong>{video.title}</strong><small>点击播放</small></span>
             </button>)}
-          </div>
+          </div> : <div className="sample-gallery-empty"><span><PlayIcon size={24}/></span><strong>作品持续更新</strong><p>这一分类的正式样片上线后会直接显示在这里。</p></div>}
         </>}
       </div>
     </div>}
